@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Prints "Best School" for all iterations, except 4 (prints "badluck") and 8 (prints "good luck")
+
+var=0;
+while ((var<10))
+do
+	if ((var==3))
+	then
+		echo "bad luck"
+	elif ((var==7))
+	then
+		echo "good luck"
+	else
+		echo "Best School"
+	fi
+	((var++))
+done
