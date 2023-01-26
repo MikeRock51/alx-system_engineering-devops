@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Prints superstitious numbers
+
+var=1;
+while ((var<=20))
+do
+	echo $var
+	case $var in
+		4)
+			echo "bad luck from China";;
+		9)
+			echo "bad luck from Japan";;
+		17)
+			echo "bad luck from Italy";;
+	esac
+	((var++))
+done
