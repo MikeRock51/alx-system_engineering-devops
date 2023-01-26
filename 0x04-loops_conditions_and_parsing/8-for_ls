@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Displays the content of the current directory in a list format
+
+cwd=$(pwd)
+for file in "$cwd"/*
+	do
+		if [[ $file == .* ]]; then
+			continue
+		fi
+		file_name_parts=("${file//-/ }")
+		echo "${file_name_parts[1]}"
+	done
