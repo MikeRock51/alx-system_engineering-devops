@@ -2,7 +2,7 @@
 # Displays the content of the current directory in a list format
 
 cwd=$(ls)
-for file in "$cwd"
+for file in $cwd
 	do
 		if [[ $file == .* ]]; then
 			continue
