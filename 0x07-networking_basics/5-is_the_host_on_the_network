@@ -7,13 +7,9 @@
 
 var=0;
 
-if (($# == 0))
+if (("$#"==0))
 then
     echo "Usage: 5-is_the_host_on_the_network {IP_ADDRESS}"
 else
-    while ((var<5))
-    do
-        ping $1
-        var++
-    done
+        ping -c 5 "$1"
 fi
