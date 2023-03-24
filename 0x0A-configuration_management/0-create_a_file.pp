@@ -1,9 +1,8 @@
 # Creates the file /tmp/school that contains 'I love Puppet' with 0744 permision
 
-file {'school':
+file {'tmp/school':
   mode    => '0744',
   owner   => 'www-data',
   group   => 'www-data',
-  content => 'I love puppet'
-  path    => '/tmp/school'
+  content => 'I love puppet',
 }
