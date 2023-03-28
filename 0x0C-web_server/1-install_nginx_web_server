@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# A script that installs nginx and configures the server 
+# to listen on port 80 and reurns a page that contains
+# the string "Hello World!" from the root route.
+
+sudo apt update
+sudo apt install nginx -y
+sudo ufw allow 'Nginx HTTP'
+echo "Hello World!" | sudo tee /var/www/html/index.html
+sudo service nginx start
