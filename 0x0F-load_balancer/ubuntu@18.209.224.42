@@ -1,0 +1,8 @@
+#!/bin/bash
+# Install and configure HAproxy on a server
+
+sudo apt-get install --no-install-recommends software-properties-common
+add-apt-repository ppa:vbernat/haproxy-2.7
+apt-get install haproxy=2.7.\* -y
+
+echo "\nlisten http\n\tbind *:80\n\tbalance roundrobin\n\tserver 151482-web-01 54.237.86.166:80 check\n\tserver 151482-web-02 54.236.48.218:80 check" | sudo tee /etc/haproxy/haproxy.cfg
