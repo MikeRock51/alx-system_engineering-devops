@@ -11,3 +11,9 @@ uidj
 Hello World
 u dosj iksdjh
 Mike Rocks
+
+listen http
+        bind *:80
+        balance roundrobin
+        server 151482-web-01 54.237.86.166:80 check
+        server 151482-web-02 54.236.48.218:80 check
