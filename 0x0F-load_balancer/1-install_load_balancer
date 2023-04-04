@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 # Install and configure HAproxy on a server
 
-sudo apt update
-sudo apt install haproxy -y
+sudo apt-get install --no-install-recommends software-properties-common -y
+sudo add-apt-repository ppa:vbernat/haproxy-2.7 -y
+sudo apt-get install haproxy=2.7.\* -y
 
 sudo echo "
 listen http
