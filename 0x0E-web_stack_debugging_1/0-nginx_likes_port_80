@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Debugs a Ubuntu container not listening on port 80
+
+sudo rm /etc/nginx/sites-enabled/default
+sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-enabled
+sudo service nginx restart
