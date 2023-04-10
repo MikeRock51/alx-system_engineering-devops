@@ -5,18 +5,30 @@ displayDomain() {
 
 	domain="$1"
 	subdomain="$2"
-
+	
 	if [ -z "$subdomain" ]
 	then
-		echo "No subdomain"
+		subdomains=('www' 'lb-01' 'web-01' 'web-02')
+		for subdomain in "${subdomains[@]}"
+		do
+			domainInfo=$(dig "$subdomain.$domain" | grep -A1 "ANSWER SECTION:")
+
+			domainName=$(echo "$domainInfo" | grep -Eo "\w[^A-Z :].*.[a-z]")
+			subdomainName=$(echo "$domainName" | grep -Eo "^[^.]*")
+			destIP=$(echo "$domainInfo" | grep -Eo "([0-9]{1,3}\.){3}[0-9]{1,3}")
+			recordType=$(echo "$domainInfo" | awk '{ printf $4}')
+
+			echo "The subdomain $subdomainName is a $recordType record and points to $destIP"
+		done
 	else
-		subdomainInfo=$(dig "$subdomain.$domain" | grep -A1 "ANSWER SECTION:")
+		domainInfo=$(dig "$subdomain.$domain" | grep -A1 "ANSWER SECTION:")
+
+		domainName=$(echo "$domainInfo" | grep -Eo "\w[^A-Z :].*.[a-z]")
+		subdomainName=$(echo "$domainName" | grep -Eo "^[^.]*")
+		destIP=$(echo "$domainInfo" | grep -Eo "([0-9]{1,3}\.){3}[0-9]{1,3}")
+		recordType=$(echo "$domainInfo" | awk '{ printf $4}')
+
+		echo "The subdomain $subdomainName is a $recordType record and points to $destIP"
 	fi
-
-	domainName=$(echo "$subdomainInfo" | grep -Eo "\w[^A-Z :].*.[a-z]")
-	subdomainName=$(echo "$domainName" | grep -Eo "^[^.]*")
-	destIP=$(echo "$subdomainInfo" | grep -Eo "([0-9]{1,3}\.){3}[0-9]{1,3}")
-	recordType=$(echo "$subdomainInfo" | awk '{ printf $4}')
-
-	echo "The subdomain $subdomainName is a $recordType record and points to $destIP"
 }
+displayDomain "$1" "$2"
