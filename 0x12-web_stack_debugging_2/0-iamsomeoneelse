@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Runs whoami command as given user or current user if no user was specified
+
+if [ -z "$1" ]
+then
+	whoami
+else
+	sudo -u "$1" whoami
+fi
