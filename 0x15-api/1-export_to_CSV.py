@@ -21,7 +21,9 @@ if __name__ == '__main__':
             employeeId)).json()
 
     with open('{}.csv'.format(employeeId), 'w') as csvfile:
-        writer = csv.writer(csvfile)
         for task in userTasks:
-            writer.writerow([user.get('id'), user.get('username'),
-                            task.get('completed'), task.get('title')])
+            csvfile.write(
+                '"{}","{}","{}","{}"\n'.format(user.get('id'),
+                                               user.get('username'), task.get(
+                                                   'completed'),
+                                               task.get('title')))
