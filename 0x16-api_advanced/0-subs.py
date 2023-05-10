@@ -16,7 +16,7 @@ def number_of_subscribers(subreddit):
             "User-Agent": "python3 3.10"
             }
 
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=headers, allow_redirects=False)
 
     if response.status_code != 200:
         return 0

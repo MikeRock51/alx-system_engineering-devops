@@ -14,7 +14,7 @@ def top_ten(subreddit):
     params = {"limit": 10}
     headers = {"User-Agent": "Python3 3.10"}
 
-    response = requests.get(url, params=params, headers=headers)
+    response = requests.get(url, params=params, headers=headers, allow_redirects=False)
     if response.status_code != 200:
         print(None)
         return

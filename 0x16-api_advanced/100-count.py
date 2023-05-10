@@ -12,7 +12,7 @@ def count_words(subreddit, word_list, params={}, hot_list={}):
     url = 'https://www.reddit.com/r/{}/hot.json'.format(subreddit)
     headers = {"User-Agent": "Python3 3.10"}
 
-    response = requests.get(url, params=params, headers=headers)
+    response = requests.get(url, params=params, headers=headers, allow_redirects=False)
     datas = response.json().get('data').get('children')
     for data in datas:
         title = data.get('data').get('title')
