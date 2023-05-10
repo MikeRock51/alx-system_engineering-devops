@@ -17,9 +17,10 @@ def count_words(subreddit, word_list, params={}, hot_list={}):
     for data in datas:
         title = data.get('data').get('title')
         for word in word_list:
-            if word in hot_list:
-                hot_list[word] += len(re.findall(r'\b{}\b'.format(
-                    word.lower()), title.lower()))
+            if word in hot_list.keys():
+                hot_list[word] = hot_list.get(word) + len(
+                    re.findall(r'\b{}\b'.format(
+                        word.lower()), title.lower()))
             else:
                 hot_list[word] = len(re.findall(r'\b{}\b'.format(
                     word.lower()), title.lower()))
@@ -27,7 +28,9 @@ def count_words(subreddit, word_list, params={}, hot_list={}):
     nextPage = response.json().get('data').get('after')
     if nextPage:
         params["after"] = nextPage
-        count_words(subreddit, params, hot_list)
-
-    for key, value in hot_list.items():
-        print("{}: {}".format(key, value))
+        count_words(subreddit, word_list, params, hot_list)
+    else:
+        for key, value in sorted(hot_list.items(),
+                                 key=lambda x: x[1], reverse=True):
+            if value > 0:
+                print("{}: {}".format(key, value))
