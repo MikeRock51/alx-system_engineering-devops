@@ -17,6 +17,7 @@ def count_words(subreddit, word_list, params={}, hot_list={}):
     for data in datas:
         title = data.get('data').get('title')
         for word in word_list:
+            word = word.lower()
             if word in hot_list.keys():
                 hot_list[word] = hot_list.get(word) + len(
                     re.findall(r'\b{}\b'.format(
