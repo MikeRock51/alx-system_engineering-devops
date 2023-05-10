@@ -13,6 +13,8 @@ def count_words(subreddit, word_list, params={}, hot_list={}):
     headers = {"User-Agent": "Python3 3.10"}
 
     response = requests.get(url, params=params, headers=headers)
+    if response.status_code != 200:
+        return
     datas = response.json().get('data').get('children')
     for data in datas:
         title = data.get('data').get('title')
