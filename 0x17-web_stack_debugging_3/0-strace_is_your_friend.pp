@@ -3,5 +3,5 @@
 
 exec { 'replace-phpp-with-php':
   command => 'sed -i "s/phpp/php/g" /var/www/html/wp-settings.php',
-  path    => ['bin', 'usr/bin'],
+  path    => ['/bin', '/usr/bin'],
 }
