@@ -58,7 +58,7 @@ server {
 	rewrite ^/redirect_me https://github.com/MikeRock51 permanent;
 
 	location / {
-		proxy_pass http://localhost:5003;
+		proxy_pass http://localhost:5003/2-hbnb;
 		add_header X-Served-By $hostname;
 	}
 
