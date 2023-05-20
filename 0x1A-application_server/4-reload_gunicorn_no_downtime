@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # Gracefully reloads Gunicorn processes
 
-gunicorns=$(pgrep -f gunicorn)
-kill -HUP $gunicorns 
+gunicorns="$(pgrep -f gunicorn)"
+kill -HUP "$gunicorns" 
