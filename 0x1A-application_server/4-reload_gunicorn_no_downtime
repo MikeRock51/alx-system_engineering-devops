@@ -2,4 +2,4 @@
 # Gracefully reloads Gunicorn processes
 
 gunicorns="$(pgrep -f gunicorn)"
-kill -HUP "$gunicorns" 
+echo "$gunicorns"  | xargs kill -HUP
